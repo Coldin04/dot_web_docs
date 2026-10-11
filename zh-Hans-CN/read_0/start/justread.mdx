@@ -1,0 +1,59 @@
+---
+title: Just Read
+new: true
+description: 在小纸 Pico 上安装 Just Read，通过网页刷写系统并导入首次启动所需的字体资源。
+---
+
+感谢 Algorithnm & 酷丁 为小纸Pico提供系统。
+
+## 开始之前
+
+准备电量充足的小纸 Pico、使用桌面版 Chrome 或 Edge 的电脑，以及支持数据传输的 USB-C 数据线。关闭其他占用设备串口的网页、刷写工具或终端。
+
+首次启动需要系统字体，请准备 microSD 存储卡并插入设备。小纸 Pico 最大支持 512 GB，需使用 FAT32 格式。
+
+安装会替换设备当前的系统，原有设置可能被清除。请先保存需要保留的数据，并阅读安装页面的提示。
+
+<CustomCloudImage osSrc="dot/docs/justread_1_1791710269546.png" alt="Just Read 官网的设备选择、系统版本与资源导入入口" />
+
+<Steps>
+<Step>
+
+### 打开官网
+
+在电脑的 Chrome 或 Edge 中打开 [Just Read 官网](https://flasher.smn.icu/)。
+
+</Step>
+<Step>
+
+### 连接设备
+
+用 USB 数据线将小纸 Pico 连接到电脑，点击「设备」区域的选择按钮。在浏览器弹出的窗口中选择小纸 Pico 的串口，再点击「连接」。
+
+如果不确定哪个是小纸 Pico，可先取消窗口，拔下设备，再重新连接，查看新增的串口。
+
+</Step>
+<Step>
+
+### 选择系统并刷写
+
+在「固件」列表中选择 Just Read 的版本。截图中为 **V0.0.1 Dongting**，具体版本以网站显示为准；「MindReset 原厂固件」是另一项系统选项。
+
+点击「开始刷入」，按页面提示完成安装。保持 USB 连接和页面打开，期间不要拔掉数据线、关闭网页，或让电脑进入睡眠。
+
+</Step>
+<Step>
+
+### 导入首次启动资源
+
+确认刷写完成后，点击「资源导入」。保持 microSD 卡已插入、设备通过 USB 连接电脑，点击「通过 USB 导入资源」，按页面提示导入系统字体。
+
+完成资源导入后，按页面指引启动设备，开始使用 Just Read。
+
+</Step>
+</Steps>
+
+<Cards>
+  <Card href="/docs/read_0/faq/firmware_install" title="安装与使用常见问题">查看存储卡、串口连接和安装后卡顿等问题的处理方法。</Card>
+  <Card href="/docs/read_0/firmware" title="恢复官方演示系统">前往 DIY 你的系统，按编译与刷写步骤恢复官方演示系统。</Card>
+</Cards>

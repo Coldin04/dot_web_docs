@@ -1,5 +1,5 @@
 {
     "title": "Getting Started",
-    "pages": ["crossmux", "kiikoread", "rickyos", "whiteos", "crosslink"],
+    "pages": ["crossmux", "kiikoread", "rickyos", "whiteos", "crosslink", "justread"],
     "defaultOpen": true
 }

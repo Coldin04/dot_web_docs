@@ -1,0 +1,59 @@
+---
+title: Just Read
+new: true
+description: Install Just Read on Read Pico through its website and import the font resources needed for the first startup.
+---
+
+Thank you to Algorithnm & 酷丁 for providing a system for Read Pico.
+
+## Before you start
+
+Prepare a sufficiently charged Read Pico, a computer running desktop Chrome or Edge, and a USB-C data cable. Close other webpages, flashing tools, or terminals using the device's serial port.
+
+The first startup requires system fonts. Prepare a microSD card and insert it into the device. Read Pico supports cards up to 512 GB, formatted as FAT32.
+
+Installation replaces the current system and may clear existing settings. Save any data you want to keep and read the installation notes on the website.
+
+<CustomCloudImage osSrc="dot/docs/justread_1_1791710269546.png" alt="Just Read website with device selection, system versions, and resource import" />
+
+<Steps>
+<Step>
+
+### Open the website
+
+Open the [Just Read website](https://flasher.smn.icu/) in Chrome or Edge on your computer.
+
+</Step>
+<Step>
+
+### Connect your device
+
+Connect Read Pico to your computer with the USB data cable. Click the selector under **设备** (Device). In the browser picker, select Read Pico's serial port and click **Connect**.
+
+If you are unsure which entry to use, cancel the picker, unplug and reconnect the device, and look for the newly added port.
+
+</Step>
+<Step>
+
+### Select and flash the system
+
+Select a Just Read version from **固件** (Firmware). The screenshot shows **V0.0.1 Dongting**; check the website for current versions. **MindReset 原厂固件** (MindReset factory firmware) is a separate system option.
+
+Click **开始刷入** (Start flashing) and follow the page's instructions. Keep USB connected and the page open. Do not unplug the cable, close the tab, or let your computer go to sleep.
+
+</Step>
+<Step>
+
+### Import resources for the first startup
+
+After flashing finishes, click **资源导入** (Import resources). Keep the microSD card inserted and the device connected to your computer over USB. Click **通过 USB 导入资源** (Import resources via USB) and follow the instructions to import system fonts.
+
+When the import finishes, follow the page's startup instructions to begin using Just Read.
+
+</Step>
+</Steps>
+
+<Cards>
+  <Card href="/docs/read_0/faq/firmware_install" title="Installation and Usage FAQ">Find help with SD cards, serial connections, and slow or frozen screens after installation.</Card>
+  <Card href="/docs/read_0/firmware" title="Restore the Official Demo System">Follow the build and flash instructions in DIY Your System to restore the official demo system.</Card>
+</Cards>
