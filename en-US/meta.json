@@ -10,6 +10,8 @@
         "rand_0",
         "---Read---",
         "read_0",
+        "---Clock---",
+        "clock_0",
         "---Content & Services---",
         "service/update_plan",
         "service/studio",

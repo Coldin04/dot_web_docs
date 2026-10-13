@@ -1,0 +1,71 @@
+---
+title: DIY Your System
+description: Develop CW32L010 firmware through Clock/0's SWD interface, with power and wiring guidance and an approach to an e-paper clock.
+---
+
+Write your own firmware and flash it through the SWD interface on the circuit board to try custom clock displays, button interactions, and low-power applications. Clock/0 has no visual design editor; custom displays require firmware development.
+
+## Chip documentation
+
+Clock/0 uses the CW32L010. See the [technical specifications](/docs/clock_0) for the processor, memory, and clock resources, and Wuhan Xinyuan's [CW32L010 datasheet](https://www.whxy.com/shujushouce.html) for peripherals and package information.
+
+## Connect SWD
+
+Open the magnetic rear cover as described in [Install the battery](/docs/clock_0/start). The board exposes five pads: **GND, GND, CLK, DIO, and 3V**. Connect by signal label.
+
+| Board pad | Debugger connection | Purpose |
+| :--- | :--- | :--- |
+| GND (two pads) | GND | Common ground between the device and debugger |
+| CLK | SWCLK | SWD clock |
+| DIO | SWDIO | Bidirectional SWD data |
+| 3V | Target voltage reference, such as Vref / VTref | Target board voltage reference for debuggers with voltage sensing |
+
+<Callout type="warn" title="Power and wiring">
+
+The device is rated for 3 V. A debugger's voltage reference and power output serve different purposes. Do not connect a 5 V supply to the 3V pad.
+
+Disconnect power before wiring. Remove the CR2032 battery before using an external supply to avoid feeding power back into the non-rechargeable battery. Check ground, polarity, and target voltage before powering the device.
+
+</Callout>
+
+## Prepare the tools
+
+Prepare a CW32L010-compatible SWD debugger, wires, and a compiler and debugger environment that supports the chip.
+
+- [CW-DAPLINK](https://www.whxy.com/kaifagongju.html) is the chip manufacturer's SWD debugging tool for use with Keil or IAR. Its interface voltage reference comes from the target board.
+- Download the CW32L010 standard peripheral library from the [official firmware library page](https://www.whxy.com/gujianku.html).
+- Use the [CW32L010 reference manual](https://www.whxy.com/yonghushouce.html) to configure peripherals such as RTC, GPIO, and low-power modes.
+
+## Build and flash
+
+Before development, verify the display controller, resolution, pin assignments, and electrical connections for the hardware revision. Chip library examples need these connections adapted before they can run on Clock/0.
+
+1. Start with a CW32L010 chip example project. Select the actual chip variant and configure the startup file, memory size, and flash programming algorithm.
+2. Select SWD debugging, connect the signals above, and confirm that the debugger can identify the chip.
+3. Adapt the buttons, clock, and display driver to Clock/0's hardware connections, then build the firmware.
+4. Once you have a recovery method, flash the build and check timekeeping, buttons, and screen refresh against the behavior you implemented.
+
+<Callout type="warn" title="Keep a recovery option">
+
+Flashing replaces the existing firmware. If you want to restore the factory behavior later, obtain recovery firmware or a usable backup before flashing.
+
+Read protection may prevent firmware backups. Lowering the protection level may erase the entire chip; see the [chip datasheet](https://www.whxy.com/uploads/files/20250604/CW32L010_DataSheet_EN_V1.0.pdf) for the exact behavior.
+
+</Callout>
+
+## Implement your clock
+
+| Function | Approach |
+| :--- | :--- |
+| Date and time | Use the fitted 32.768 kHz LSE as the RTC timebase and schedule wakeups to suit the display |
+| Button input | Debounce SET and BACK and distinguish short from long presses |
+| E-paper display | Follow the actual controller's initialization sequence and timing, handling fast and full refreshes separately |
+| Sunrise and sunset changes | Calculate or store switching times in firmware and update the display on schedule |
+| Low power | Enter a low-power mode after timekeeping, button handling, and display updates; wake as needed |
+| Memory use | Plan drawing buffers around the actual SRAM size; use line or block output if needed and store fixed fonts and images in Flash |
+
+## If SWD does not connect
+
+Check device power, common ground, and CLK / DIO wiring first, then the debugger's target voltage reference and SWD settings. Try a lower SWD clock if the connection is unstable.
+
+If the chip still cannot be identified, check the chip variant and protection state before attempting an unlock or full-chip erase.
